@@ -1,0 +1,17 @@
+$TTL	604800
+@	IN	SOA	pc.com.	root.pc.com. (
+			3		; Serial
+			604800		; Refresh
+			86400		; Retry
+			2419200		; Expire
+			604800 )	; Negative Cache TTL
+;
+
+	IN	NS	pc.com.
+	IN	A	10.10.2.110
+
+server.pc.com.		IN	A	10.10.2.110
+nodoPablo.pc.com.	IN	A	10.10.2.111	
+nodoAlfonso.pc.com.	IN	A	10.10.2.112	
+nodoDani.pc.com.	IN	A	10.10.2.113	
+nodoEli.pc.com.		IN	A	10.10.2.114	
