@@ -1,0 +1,39 @@
+from faker import Faker
+import pandas as pd
+fake = Faker('Es_es')
+import csv
+
+df=pd.DataFrame(columns=('iban'
+    , 'bank_country'
+    , 'bban'
+    , 'company'
+    , 'credit_card_expire'
+    , 'credit_card_number'
+    , 'credit_card_security_code'
+    , 'date_of_birth'
+    , 'address'
+    , 'state'                    
+    , 'job'                   
+    , 'name'                    
+    , 'phone_number' ))
+export=open('cassandra.csv', "w")
+writer=csv.writer(export,delimiter=',', quoting=csv.QUOTE_ALL)
+writer.writerow(df)
+
+for i in range(0,10000):
+    filas=[fake.iban()\
+           ,fake.bank_country()\
+           ,fake.bban()\
+           ,fake.company()\
+           ,fake.credit_card_expire(end="+10y", date_format="%m/%y")\
+           ,fake.credit_card_number()\
+           ,fake.credit_card_security_code()\
+           ,fake.date_of_birth()\
+           ,fake.address()\
+           ,fake.state()\
+           ,fake.job()\
+           ,fake.name()\
+           ,fake.phone_number()]
+    df.loc[i] = [item for item in filas]
+    writer.writerow(df.loc[i])
+
